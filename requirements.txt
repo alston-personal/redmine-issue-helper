@@ -1,0 +1,5 @@
+python-redmine
+pyyaml
+python-dotenv
+click
+requests

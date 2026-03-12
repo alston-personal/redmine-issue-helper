@@ -1,0 +1,19 @@
+redmine:
+  base_url: "https://redmine.example.com"
+  project_identifier: "my-project"
+  default_tracker: "Bug"
+
+paths:
+  issue_root: "./issues"
+  pending_dir: "./issues/pending"
+  uploaded_dir: "./issues/uploaded"
+  template_dir: "./config/templates"
+
+settings:
+  default_language: "en"
+  output_style: "qa_professional"
+  default_template: "bug_report"
+
+field_mapping:
+  priority_id: 2 # Normal
+  status_id: 1   # New

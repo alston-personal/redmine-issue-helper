@@ -1,0 +1,31 @@
+name: "bug_report"
+description: "Used for submitting software bugs or anomalies."
+tracker: "Bug"
+required_fields:
+  - "steps"
+  - "actual_result"
+  - "expected_result"
+optional_fields:
+  - "frequency"
+  - "note"
+questions:
+  steps: "Please provide reproduction steps (newline for each step):"
+  actual_result: "What was the actual result?"
+  expected_result: "What was the expected result?"
+  frequency: "How often does it happen? (e.g. 100%, Always, Random)"
+  note: "Any additional notes?"
+description_format: |
+  ### Steps:
+  {steps}
+
+  ### Actual result:
+  {actual_result}
+
+  ### Expected result:
+  {expected_result}
+
+  ### Frequency:
+  {frequency}
+
+  ### Note:
+  {note}
