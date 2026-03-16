@@ -19,21 +19,18 @@
    編輯 `config/app.yaml` 設定 Redmine 的 `base_url` 與 `project_identifier`。
 
 ## 使用方法
-### 建立新 Issue
+### 1. Web 介面 (推薦)
+啟動整合伺服器：
 ```bash
-python src/main.py create --title "標題名稱"
+python3 src/server.py
 ```
-工具會引導您填寫模板定義的必要欄位。
+啟動後，請在瀏覽器訪問 `http://localhost:8000`。
 
-### 查看待上傳清單
-```bash
-python src/main.py list
-```
+> [!NOTE]
+> 如果您看到空白頁面或連線錯誤，請確認伺服器的 8000 端口已正確對外開放或已透過 SSH 轉發。
 
-### 上傳至 Redmine
-```bash
-python src/main.py upload
-```
+### 2. CLI 模式
+... (保留原有內容)
 
 ## 目錄結構
 - `config/`: 設定檔與模板。

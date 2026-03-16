@@ -3,3 +3,6 @@ pyyaml
 python-dotenv
 click
 requests
+fastapi
+uvicorn
+python-multipart

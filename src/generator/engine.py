@@ -25,13 +25,31 @@ class IssueGenerator:
         logger.info(f"Translating title: {chinese_title}")
         return f"[Draft] {chinese_title}"
 
-    def generate_description(self, template_name, fields_data):
+    def generate_description(self, template_name, fields_data, title_context=""):
         template = self.template_engine.load_template(template_name)
         fmt = template.get('description_format', "")
         
-        # Fill missing fields with placeholders
+        # Heuristic approach: if field is empty, try to provide a 'placeholder' or 'guessed' value
         all_fields = template.get('required_fields', []) + template.get('optional_fields', [])
-        data = {f: fields_data.get(f, "N/A") for f in all_fields}
+        data = {}
+        for f in all_fields:
+            val = fields_data.get(f, "").strip()
+            if not val:
+                # Smarter inference from title
+                if f == 'actual_result' and title_context:
+                    if "不" in title_context or "錯" in title_context or "失敗" in title_context:
+                        val = f"The system is currently: {title_context}"
+                    else:
+                        val = f"Issue observed: {title_context}"
+                elif f == 'expected_result' and title_context:
+                    val = "The system should function correctly without errors."
+                elif f == 'steps':
+                    val = "1. Navigate to the relevant page.\n2. Perform the action mentioned in the title.\n3. Observe the issue."
+                elif f == 'frequency':
+                    val = "Always"
+                else:
+                    val = f"[{f.replace('_', ' ').capitalize()}]"
+            data[f] = val
         
         return fmt.format(**data)
 
